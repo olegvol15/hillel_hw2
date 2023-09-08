@@ -1,27 +1,31 @@
-import math
-
-def is_prime(num):
-    if num <= 1:
+def is_prime(number):
+    if number <= 1:
         return False
-    if num <= 3:
+    if number <= 3:
         return True
-    if num % 2 == 0 or num % 3 == 0:
+    if number % 2 == 0 or number % 3 == 0:
         return False
     i = 5
-    while i * i <= num:
-        if num % i == 0 or num % (i + 2) == 0:
+    while i * i <= number:
+        if number % i == 0 or number % (i + 2) == 0:
             return False
         i += 6
     return True
 
-def generate_primes_in_range(N, Z):
-    primes = [str(num) for num in range(max(2, N), Z + 1) if is_prime(num)]
-    return " ".join(primes)
+def generate_primes_in_range(min_value, max_value):
+    for num in range(min_value, max_value + 1):
+        if is_prime(num):
+            yield num
 
-# Генеруємо випадкові значення N і Z
-import random
-N = random.randint(1, 100)
-Z = random.randint(N, N + 100)
+if __name__ == "__main__":
+    N = int(input("Enter the minimum value (N): "))
+    Z = int(input("Enter the maximum value (Z): "))
 
-result = generate_primes_in_range(N, Z)
-print(result)
+    if N > Z:
+        N, Z = Z, N
+
+    prime_generator = generate_primes_in_range(N, Z)
+    primes = list(prime_generator)
+
+    print("Prime numbers in the range:", primes)
+
