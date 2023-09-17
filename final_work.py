@@ -1,11 +1,9 @@
 import random
 
-# Function to create an empty game board of size 10x10
 def create_empty_board():
     board = [[' ' for _ in range(10)] for _ in range(10)]
     return board
 
-# Function to print the game board on the screen
 def print_board(board):
     print("   A B C D E F G H I J")
     for i in range(10):
@@ -14,7 +12,6 @@ def print_board(board):
             print(board[i][j], end=" ")
         print()
 
-# Function for manual ship placement
 def manual_placement(board):
     ships = {'four-deck': 1, 'three-deck': 2, 'two-deck': 3, 'one-deck': 4}
     for ship_type, count in ships.items():
@@ -46,7 +43,6 @@ def manual_placement(board):
                     board[i][y] = 'X'
     return board
 
-# Function for automatic ship placement by the computer
 def auto_placement(board):
     ships = {'four-deck': 1, 'three-deck': 2, 'two-deck': 3, 'one-deck': 4}
     for ship_type, count in ships.items():
@@ -79,8 +75,7 @@ def auto_placement(board):
                             board[i][y] = 'X'
                     break
     return board
-
-# Function to determine the game state
+    
 def game_over(board):
     return all(all(cell != 'X' for cell in row) for row in board)
 
@@ -94,7 +89,6 @@ def make_move(board, x, y):
         return False
     return False
 
-# Main game function
 def main():
     print("Welcome to the Battleship game!")
 
