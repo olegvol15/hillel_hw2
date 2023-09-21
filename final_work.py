@@ -79,7 +79,6 @@ def auto_placement(board):
 def game_over(board):
     return all(all(cell != 'X' for cell in row) for row in board)
 
-# Function to make a move
 def make_move(board, x, y):
     if board[x][y] == 'X':
         board[x][y] = 'H'
